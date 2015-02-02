@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'phpro_encoding_com' => [
+
+        /*
+         * Provide API credentials
+         */
+        'api' => [
+            'user_id' => '',
+            'user_key' => '',
+        ],
+
+        /*
+         * Enable ngrok for local testing
+         * The host is the subdomain on which the application runs
+         */
+        'ngrok' => [
+            'enabled' => false,
+            'host' => 'subdomain.ngrok.com',
+        ],
+
+        /*
+         * A unique hash to protect the /encoding-com/notify page.
+         */
+        'hash' => '',
+    ],
+];

@@ -1,0 +1,26 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 11 Aug 2013 16:37:14 GMT
+Content-Type: text/xml
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.4.10
+Set-Cookie: PHPSESSID=evriroro8702ciaf7ori42a7b3; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+
+<?xml version="1.0"?>
+<response>
+	<bitrate>1807k</bitrate>
+	<duration>6464.83</duration>
+	<video_codec>mpeg4</video_codec>
+	<video_bitrate>1679k</video_bitrate>
+	<frame_rate>23.98</frame_rate>
+	<size>640x352</size>
+	<pixel_aspect_ratio>1:1</pixel_aspect_ratio>
+	<display_aspect_ratio>20:11</display_aspect_ratio>
+	<audio_codec>ac3</audio_codec>
+	<audio_sample_rate>48000</audio_sample_rate>
+	<audio_channels>2</audio_channels>
+</response>

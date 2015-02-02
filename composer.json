@@ -1,0 +1,18 @@
+{
+    "name": "phpro/zf-encoding-com",
+    "description": "A wrapper for the encoding.com API.",
+    "require": {
+        "svilborg/guzzle-encoding-com": "0.3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.4",
+        "fabpot/sphinx-php": "~1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Toon Verwerft",
+            "email": "toon.verwerft@phpro.be"
+        }
+    ]
+}

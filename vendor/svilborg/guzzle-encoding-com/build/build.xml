@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Phing build file for guzzle-encoding-com
+ *
+ * @author svilborg
+ * @link https://github.com/svilborg/guzzle-encoding-com
+ * @license Apache2
+ */
+-->
+<project name="guzzle-encoding-com" basedir="../" default="help">
+
+	<!-- these are required external commands -->
+	<property name="php" value="php" />
+	<!-- PHP parser -->
+
+	<!-- directory definitions -->
+	<property name="build.basedir" value="${project.basedir}/build" />
+
+	<tstamp>
+		<format property="DATE" pattern="%b %e %Y" />
+	</tstamp>
+
+	<!-- source files in library -->
+	<fileset dir=".." id="library">
+		<exclude name="**/.gitignore" />
+		<exclude name="**/*.bak" />
+		<exclude name="**/*~" />
+		<include name="src**/*" />
+		<include name="LICENSE" />
+		<include name="README.md" />
+	</fileset>
+
+	<target name="php-lint" description="PHP Lint Source Check">
+		<phplint level="default">
+			<fileset dir="${project.basedir}/src">
+				<include name="**/*.php" />
+			</fileset>
+		</phplint>
+		<phplint level="default">
+			<fileset dir="${project.basedir}/tests">
+				<include name="**/*.php" />
+			</fileset>
+		</phplint>
+	</target>
+
+	<target name="sniff" description="Check code for PSR-2 compliance">
+		<phpcodesniffer standard="PSR2" format="summary">
+			<fileset dir="src" id="filestosniff">
+				<include name="**/*.php" />
+			</fileset>
+		</phpcodesniffer>
+	</target>
+
+	<target name="phploc" description="Measure project size using PHPLOC">
+		<mkdir dir="${build.basedir}/logs" />
+		<exec command="phploc --log-csv ${build.basedir}/logs/phploc.csv ${project.basedir}/src" passthru="true" />
+	</target>
+
+	<target name="pdepend" description="Calculate software metrics using PHP_Depend">
+		<mkdir dir="${build.basedir}/pdepend" />
+		<phpdepend>
+			<fileset dir="${project.basedir}/src">
+				<include name="**/*.php" />
+			</fileset>
+			<logger type="jdepend-xml" outfile="${build.basedir}/logs/jdepend.xml" />
+			<logger type="jdepend-chart" outfile="${build.basedir}/pdepend/dependencies.svg" />
+			<logger type="overview-pyramid" outfile="${build.basedir}/pdepend/overview-pyramid.svg" />
+			<analyzer type="coderank-mode" value="method" />
+		</phpdepend>
+	</target>
+
+	<target name="clean">
+		<echo>Cleaning up the build...</echo>
+		<delete dir="${build.basedir}/logs" />
+	</target>
+
+	<target name="check" description="Runs all metrics/checks over the project" depends="php-lint, phploc, sniff,  pdepend">
+		<echo>Running metrics ...</echo>
+	</target>
+
+	<target name="help">
+		<echo>
+guzzle-encoding-com build script
+--------------------------------
+
+Usage :
+    phing   &lt;target name&gt;
+
+Options :
+
+   - clean    : Clean up Build
+   - check    : Runs all metrics/checks over the project
+   - php-lint : PHP Lint Source Check
+   - sniff    : Check code for PSR-2 compliance
+   - phploc   : Measure project size using PHPLOC
+   - pdepend  : Calculate software metrics using PHP_Depend
+   - help     : This help message
+    </echo>
+	</target>
+</project>
