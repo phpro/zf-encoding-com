@@ -2,7 +2,9 @@
     "name": "phpro/zf-encoding-com",
     "description": "A wrapper for the encoding.com API.",
     "require": {
-        "svilborg/guzzle-encoding-com": "0.3.*"
+        "svilborg/guzzle-encoding-com": "0.3.*",
+        "zendframework/zend-stdlib": "~2.3",
+        "zendframework/zend-servicemanager": "~2.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.4",

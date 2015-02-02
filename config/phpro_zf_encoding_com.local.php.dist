@@ -12,10 +12,11 @@ return [
         ],
 
         /*
-         * Enable ngrok for local testing
-         * The host is the subdomain on which the application runs
+         * Enable a local tunnel for local testing.
+         * The host is the subdomain on which the application runs.
+         * E.g. the ngrok domain when you want to use the ngrok service.
          */
-        'ngrok' => [
+        'local_tunnel' => [
             'enabled' => false,
             'host' => 'subdomain.ngrok.com',
         ],
