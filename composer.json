@@ -4,7 +4,8 @@
     "require": {
         "svilborg/guzzle-encoding-com": "0.3.*",
         "zendframework/zend-stdlib": "~2.3",
-        "zendframework/zend-servicemanager": "~2.3"
+        "zendframework/zend-servicemanager": "~2.3",
+        "zendframework/zend-mvc": "~2.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.4",

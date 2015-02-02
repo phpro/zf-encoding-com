@@ -18,6 +18,11 @@ class EncodingComOptions extends AbstractOptions
     protected $api;
 
     /**
+     * @var NotifyOptions
+     */
+    protected $notify;
+
+    /**
      * @var LocalTunnelOptions
      */
     protected $localTunnel;
@@ -75,5 +80,22 @@ class EncodingComOptions extends AbstractOptions
     {
         $localTunnel = ($localTunnel instanceof ApiOptions) ?: new LocalTunnelOptions($localTunnel);
         $this->localTunnel = $localTunnel;
+    }
+
+    /**
+     * @return NotifyOptions
+     */
+    public function getNotify()
+    {
+        return $this->notify;
+    }
+
+    /**
+     * @param NotifyOptions $notify
+     */
+    public function setNotify($notify)
+    {
+        $notify = ($notify instanceof ApiOptions) ?: new LocalTunnelOptions($notify);
+        $this->notify = $notify;
     }
 }

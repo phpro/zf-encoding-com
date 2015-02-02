@@ -1,6 +1,8 @@
 <?php
 
-namespace Phpro\EncodingCom\Options;
+namespace Phpro\EncodingCom\Factory;
+
+use Phpro\EncodingCom\Options\EncodingComOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
