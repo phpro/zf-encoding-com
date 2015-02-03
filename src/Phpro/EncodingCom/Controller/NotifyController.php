@@ -82,7 +82,7 @@ class NotifyController extends AbstractActionController
     {
         $this->guardValidHash();
         $format = $this->config->getNotify()->getFormat();
-        $rawData = $this->params($format);
+        $rawData = $this->params()->fromPost($format);
         $data = $this->parseData($format, $rawData);
 
         $this->notifyService->notify($data);
