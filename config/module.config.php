@@ -2,7 +2,7 @@
 
 return [
 
-    'services' => [
+    'service_manager' => [
         'factories' => [
             'Phpro\EncodingCom\Client' => 'Phpro\EncodingCom\Factory\ClientFactory',
             'Phpro\EncodingCom\Options\EncodingCom' => 'Phpro\EncodingCom\Factory\EncodingComOptionsFactory',

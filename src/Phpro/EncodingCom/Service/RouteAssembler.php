@@ -50,10 +50,12 @@ class RouteAssembler
     public function buildRoute($route, $params = [], $options = [])
     {
         $params['hash'] = $this->config->getHash();
+
+        $options['name'] = $route;
         $options['force_canonical'] = true;
         $options['uri'] = $this->uri;
 
-        return $this->router->assemble($route, $params, $options);
+        return $this->router->assemble($params, $options);
     }
 
     /**
@@ -63,12 +65,13 @@ class RouteAssembler
      */
     public function buildUrl($url)
     {
-        if (stripos($url, 'http://') == 0 || stripos($url, 'https://') == 0) {
+        if (stripos($url, 'http://') === 0 || stripos($url, 'https://') === 0) {
             return $url;
         }
 
         $uri = $this->uri;
-        return $uri->resolve($url);
+        $uri->setPath($url);
+        return $uri->toString();
     }
 
 }

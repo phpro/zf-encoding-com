@@ -23,12 +23,7 @@ class RouteAssemblerFactory implements FactoryInterface
     {
         $config = $serviceLocator->get('Phpro\EncodingCom\Options\EncodingCom');
         $router = $serviceLocator->get('HttpRouter');
-        $request = $serviceLocator->get('Request');
-        $uri = $request->getUri();
-
-        if ($config->getLocalTunnel()->isEnabled()) {
-            $uri = new HttpUri('http://' . $config->getLocalTunnel()->getHost());
-        }
+        $uri = $this->parseUri($serviceLocator, $config->getLocalTunnel());
 
         return new RouteAssembler($config, $router, $uri);
     }

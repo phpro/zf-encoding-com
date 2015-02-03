@@ -24,6 +24,11 @@ class NotifyOptions extends AbstractOptions
     protected $notifyRoute;
 
     /**
+     * @var string
+     */
+    protected $notifyService;
+
+    /**
      * @return string
      */
     public function getFormat()
@@ -56,6 +61,22 @@ class NotifyOptions extends AbstractOptions
     public function setNotifyRoute($notifyRoute)
     {
         $this->notifyRoute = $notifyRoute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNotifyService()
+    {
+        return $this->notifyService;
+    }
+
+    /**
+     * @param string $notifyService
+     */
+    public function setNotifyService($notifyService)
+    {
+        $this->notifyService = $notifyService;
     }
 
 }

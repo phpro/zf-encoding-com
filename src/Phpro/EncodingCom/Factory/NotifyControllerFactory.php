@@ -20,15 +20,14 @@ class NotifyControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('Phpro\EncodingCom\Options\EncodingCom');
+        $serviceManager = $serviceLocator->getServiceLocator();
+        $config = $serviceManager->get('Phpro\EncodingCom\Options\EncodingCom');
         $notifyServicekey = $config->getNotify()->getNotifyService();
-        $notifyService = $serviceLocator->get($notifyServicekey);
+        $notifyService = $serviceManager->get($notifyServicekey);
         if (!$notifyService instanceof NotifyInterface) {
             throw new RuntimeException('The configured notify service does not implement NotifyInterface!');
         }
 
         return new NotifyController($config, $notifyService);
     }
-
-
-} 
+}
