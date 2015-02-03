@@ -1,7 +1,6 @@
 <?php
 $finder = Symfony\CS\Finder\DefaultFinder::create()
     ->exclude('config')
-    ->exclude('bin')
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests');
 
