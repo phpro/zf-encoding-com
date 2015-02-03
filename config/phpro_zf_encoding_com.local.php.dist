@@ -13,10 +13,13 @@ return [
 
         /*
          * Notify information
+         * - notify_route defaults to encodingcom/notify
+         * - The notify service should implement NotifyInterface
          */
         'notify' => [
             'format' => 'xml',
-            'notify_route' => 'encoding-com/notify',
+            'notify_route' => 'encodingcom/notify',
+            'notify_service' => 'custom-notify-service-key',
         ],
 
         /*
