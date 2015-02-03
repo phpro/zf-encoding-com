@@ -60,15 +60,16 @@ class Client
 
     /**
      * @param array $options
+     * @param array $notifyParams
      *
      * @return EncodingResponse
      */
-    public function addMedia($options)
+    public function addMedia($options, $notifyParams = [])
     {
         $baseSettings = [
             'format' => $this->config->getNotify()->getFormat(),
             'notify_format' => $this->config->getNotify()->getFormat(),
-            'notify' => $this->routeAssembler->buildRoute('encodingcom/notify'),
+            'notify' => $this->routeAssembler->buildRoute($this->config->getNotify()->getNotifyRoute(), $notifyParams),
         ];
 
         $options = array_merge($baseSettings, $options);
