@@ -43,7 +43,7 @@ class NotifyController extends AbstractActionController
      */
     protected function guardValidHash()
     {
-        $hash = $this->params('hash');
+        $hash = $this->params()->fromRoute('hash');
         if (!$hash || $this->config->getHash() != $hash) {
             throw new RuntimeException(sprintf('Invalid hash: %s', $hash));
         }
