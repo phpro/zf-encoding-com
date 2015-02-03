@@ -1,6 +1,7 @@
 <?php
 
 namespace PhproTest\EncodingCom;
+
 use Phpro\EncodingCom\Module;
 
 /**

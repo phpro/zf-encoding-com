@@ -4,7 +4,7 @@ namespace PhproTest\EncodingCom\Options;
 
 use Phpro\EncodingCom\Options\EncodingComOptions;
 
-class EncodingComOptionsTest extends \PHPUnit_Framework_TestCase
+class EncodingComOptionsTes extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -14,7 +14,7 @@ class EncodingComOptionsTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $rawConfig = require __DIR__ . '/../../../../config/module.config.php';
+        $rawConfig = require __DIR__.'/../../../../config/module.config.php';
         $this->config = new EncodingComOptions($rawConfig['phpro_encoding_com']);
     }
 
@@ -32,5 +32,4 @@ class EncodingComOptionsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->config->getLocalTunnel()->getHost(), 'subdomain.ngrok.com');
         $this->assertEquals($this->config->getHash(), 'hash');
     }
-
 }

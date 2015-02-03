@@ -89,5 +89,4 @@ class NotifyController extends AbstractActionController
 
         return new JsonModel(['success' => true]);
     }
-    
 }

@@ -46,7 +46,7 @@ class Client
     }
 
     /**
-     * @param CommandInterface $command
+     * @param  CommandInterface $command
      * @return EncodingResponse
      */
     protected function runCommand($command)
@@ -75,7 +75,7 @@ class Client
         $options['source'] = $this->routeAssembler->buildUrl($options['source']);
 
         $command = $this->client->getCommand('AddMedia', $options);
+
         return $this->runCommand($command);
     }
-
 }

@@ -42,7 +42,7 @@ class NotifyOptions extends AbstractOptions
     public function setFormat($format)
     {
         if (!in_array($format, ['xml', 'json'])) {
-            throw new InvalidArgumentException('The notify format should be one of xml or json. Got: ' . $format);
+            throw new InvalidArgumentException('The notify format should be one of xml or json. Got: '.$format);
         }
         $this->format = $format;
     }
@@ -78,5 +78,4 @@ class NotifyOptions extends AbstractOptions
     {
         $this->notifyService = $notifyService;
     }
-
 }

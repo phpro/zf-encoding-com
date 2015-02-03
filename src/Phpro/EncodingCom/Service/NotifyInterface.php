@@ -14,5 +14,4 @@ interface NotifyInterface
      * @return mixed
      */
     public function notify($data);
-
-} 
+}

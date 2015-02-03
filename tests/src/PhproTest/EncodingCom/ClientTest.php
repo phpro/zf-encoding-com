@@ -1,6 +1,7 @@
 <?php
 
 namespace PhproTest\EncodingCom;
+
 use Gencoding\Guzzle\Encoding\EncodingClient;
 use Phpro\EncodingCom\Client;
 use Phpro\EncodingCom\Options\EncodingComOptions;
@@ -37,7 +38,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->encodingClient = $this->getMock('Gencoding\Guzzle\Encoding\EncodingClient', [], [], '', false);
         $this->routeAssembler = $this->getMock('Phpro\EncodingCom\Service\RouteAssembler', [], [], '', false);
 
-        $rawConfig = require __DIR__ . '/../../../config/module.config.php';
+        $rawConfig = require __DIR__.'/../../../config/module.config.php';
         $config = new EncodingComOptions($rawConfig['phpro_encoding_com']);
 
         $this->client = new Client($this->encodingClient, $config, $this->routeAssembler);
@@ -116,5 +117,4 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $result = $this->client->addMedia($options);
         $this->assertEquals(['result' => true], $result);
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace Phpro\EncodingCom\Factory;
 
-
 use Gencoding\Guzzle\Encoding\EncodingClient;
 use Phpro\EncodingCom\Client;
 use Zend\ServiceManager\FactoryInterface;

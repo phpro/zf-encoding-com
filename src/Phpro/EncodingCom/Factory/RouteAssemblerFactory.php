@@ -30,7 +30,7 @@ class RouteAssemblerFactory implements FactoryInterface
 
     /**
      * @param ServiceLocatorInterface $serviceLocator
-     * @param LocalTunnelOptions $localTunnelConfig
+     * @param LocalTunnelOptions      $localTunnelConfig
      *
      * @return HttpUri
      */
@@ -40,10 +40,9 @@ class RouteAssemblerFactory implements FactoryInterface
         $uri = ($request instanceof HttpRequest) ? $request->getUri() : new HttpUri();
 
         if ($localTunnelConfig->isEnabled()) {
-            $uri = new HttpUri('http://' . $localTunnelConfig->getHost());
+            $uri = new HttpUri('http://'.$localTunnelConfig->getHost());
         }
 
         return $uri;
     }
-
 }

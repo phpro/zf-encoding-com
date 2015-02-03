@@ -19,7 +19,7 @@ class EncodingComOptionsFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('config');
+
         return new EncodingComOptions($config['phpro_encoding_com']);
     }
-
 }

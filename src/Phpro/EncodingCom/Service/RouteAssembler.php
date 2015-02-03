@@ -71,7 +71,7 @@ class RouteAssembler
 
         $uri = $this->uri;
         $uri->setPath($url);
+
         return $uri->toString();
     }
-
 }

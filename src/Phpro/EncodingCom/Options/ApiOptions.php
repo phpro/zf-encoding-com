@@ -3,7 +3,6 @@
 
 namespace Phpro\EncodingCom\Options;
 
-
 use Zend\Stdlib\AbstractOptions;
 
 class ApiOptions extends AbstractOptions

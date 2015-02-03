@@ -35,7 +35,7 @@ class RouteAssemblerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $rawConfig = require __DIR__ . '/../../../../config/module.config.php';
+        $rawConfig = require __DIR__.'/../../../../config/module.config.php';
         $config = new EncodingComOptions($rawConfig['phpro_encoding_com']);
 
         $this->router = $this->getMock('Zend\Mvc\Router\RouteStackInterface');
@@ -53,7 +53,7 @@ class RouteAssemblerTest extends \PHPUnit_Framework_TestCase
             ->expects($this->any())
             ->method('assemble')
             ->with([
-                    'hash' => 'hash'
+                    'hash' => 'hash',
                 ], [
                     'name' => 'route',
                     'force_canonical' => true,

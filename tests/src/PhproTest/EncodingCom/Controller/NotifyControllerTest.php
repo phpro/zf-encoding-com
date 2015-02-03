@@ -35,7 +35,7 @@ class NotifyControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $rawConfig = require __DIR__ . '/../../../../config/module.config.php';
+        $rawConfig = require __DIR__.'/../../../../config/module.config.php';
         $config = new EncodingComOptions($rawConfig['phpro_encoding_com']);
         $this->notifyService = $this->getMock('Phpro\EncodingCom\Service\NotifyInterface');
 
@@ -55,7 +55,7 @@ class NotifyControllerTest extends \PHPUnit_Framework_TestCase
     {
         $this->params
             ->expects($this->any())
-            ->method('from' . ucfirst($type))
+            ->method('from'.ucfirst($type))
             ->with($key)
             ->will($this->returnValue($value));
     }
@@ -77,5 +77,4 @@ class NotifyControllerTest extends \PHPUnit_Framework_TestCase
         $result = $this->controller->notifyAction();
         $this->assertEquals($result->getVariable('success'), true);
     }
-
 }
