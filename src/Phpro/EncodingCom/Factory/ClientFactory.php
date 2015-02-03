@@ -20,7 +20,7 @@ class ClientFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $router = $serviceLocator->get('HttpRouter');
+        $routeAssembler = $serviceLocator->get('Phpro\EncodingCom\Service\RouteAssembler');
         $config = $serviceLocator->get('Phpro\EncodingCom\Options\EncodingCom');
         $apiConfig = $config->getApi();
         $encodingClient = EncodingClient::factory([
@@ -28,6 +28,6 @@ class ClientFactory implements FactoryInterface
             'userkey' => $apiConfig->getUserKey(),
         ]);
 
-        return new Client($encodingClient, $config, $router);
+        return new Client($encodingClient, $config, $routeAssembler);
     }
 }

@@ -6,6 +6,7 @@ return [
         'factories' => [
             'Phpro\EncodingCom\Client' => 'Phpro\EncodingCom\Factory\ClientFactory',
             'Phpro\EncodingCom\Options\EncodingCom' => 'Phpro\EncodingCom\Factory\EncodingComOptionsFactory',
+            'Phpro\EncodingCom\Service\RouteAssembler' => 'Phpro\EncodingCom\Factory\RouteAssemblerFactory',
         ],
     ],
 
@@ -45,7 +46,20 @@ return [
     ],
 
     'phpro_encoding_com' => [
-
+        'api' => [
+            'user_id' => '',
+            'user_key' => '',
+        ],
+        'notify' => [
+            'format' => 'xml',
+            'notify_route' => 'encodingcom/notify',
+            'notify_service' => '',
+        ],
+        'local_tunnel' => [
+            'enabled' => false,
+            'host' => '',
+        ],
+        'hash' => '',
     ],
 
 ];

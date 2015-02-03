@@ -7,9 +7,8 @@ use Gencoding\Guzzle\Encoding\Common\EncodingResponse;
 use Gencoding\Guzzle\Encoding\EncodingClient;
 use Guzzle\Service\Command\CommandInterface;
 use Phpro\EncodingCom\Options\EncodingComOptions;
+use Phpro\EncodingCom\Service\RouteAssembler;
 use RuntimeException;
-use Zend\Mvc\Router\RouteStackInterface;
-use Zend\Uri\Http as HttpUri;
 
 /**
  * Class Client
@@ -30,20 +29,20 @@ class Client
     protected $config;
 
     /**
-     * @var RouteStackInterface
+     * @var RouteAssembler
      */
-    protected $router;
+    protected $routeAssembler;
 
     /**
      * @param $client
      * @param $config
-     * @param $router
+     * @param $routeAssembler
      */
-    public function __construct($client, $config, $router)
+    public function __construct($client, $config, $routeAssembler)
     {
         $this->client = $client;
         $this->config = $config;
-        $this->router = $router;
+        $this->routeAssembler = $routeAssembler;
     }
 
     /**
@@ -60,27 +59,6 @@ class Client
     }
 
     /**
-     * @param       $route
-     * @param array $params
-     * @param array $options
-     *
-     * @return string
-     */
-    protected function buildUrl($route, $params = [], $options = [])
-    {
-        $params['hash'] = $this->config->getHash();
-        $options['force_canonical'] = true;
-
-        // Set tunneled host:
-        if ($this->config->getLocalTunnel()->isEnabled()) {
-            $host = $this->config->getLocalTunnel()->getHost();
-            $options['uri'] = new HttpUri('http://' . $host);
-        }
-
-        return $this->router->assemble($route, $params, $options);
-    }
-
-    /**
      * @param array $options
      *
      * @return EncodingResponse
@@ -90,13 +68,14 @@ class Client
         $baseSettings = [
             'format' => $this->config->getNotify()->getFormat(),
             'notify_format' => $this->config->getNotify()->getFormat(),
-            'notify' => $this->buildUrl('encodingcom/notify'),
+            'notify' => $this->routeAssembler->buildRoute('encodingcom/notify'),
         ];
 
         $options = array_merge($baseSettings, $options);
+        $options['source'] = $this->routeAssembler->buildUrl($options['source']);
 
         $command = $this->client->getCommand('AddMedia', $options);
         return $this->runCommand($command);
     }
 
-} 
+}
