@@ -6,6 +6,11 @@ use Phpro\EncodingCom\Options\EncodingComOptions;
 use Zend\Mvc\Router\RouteStackInterface;
 use Zend\Uri\Http as HttpUri;
 
+/**
+ * Class RouteAssembler
+ *
+ * @package Phpro\EncodingCom\Service
+ */
 class RouteAssembler
 {
 
@@ -15,29 +20,24 @@ class RouteAssembler
     protected $config;
 
     /**
+     * @var HttpUri
+     */
+    protected $uri;
+
+    /**
      * @var RouteStackInterface
      */
     protected $router;
 
     /**
-     * @param $config
      * @param $router
+     * @param $uri
      */
-    public function __construct($config, $router)
+    public function __construct($config, $router, $uri)
     {
         $this->config = $config;
         $this->router = $router;
-    }
-
-    /**
-     * @return HttpUri
-     */
-    protected function getUri()
-    {
-        if ($this->config->getLocalTunnel()->isEnabled()) {
-            return new HttpUri('http://' . $this->config->getLocalTunnel()->getHost());
-        }
-        return new HttpUri();
+        $this->uri = $uri;
     }
 
     /**
@@ -51,7 +51,7 @@ class RouteAssembler
     {
         $params['hash'] = $this->config->getHash();
         $options['force_canonical'] = true;
-        $options['uri'] = $this->getUri();
+        $options['uri'] = $this->uri;
 
         return $this->router->assemble($route, $params, $options);
     }
@@ -67,8 +67,8 @@ class RouteAssembler
             return $url;
         }
 
-        $uri = $this->getUri();
-        return $uri . '/' . ltrim($url, '/');
+        $uri = $this->uri;
+        return $uri->resolve($url);
     }
 
 }
