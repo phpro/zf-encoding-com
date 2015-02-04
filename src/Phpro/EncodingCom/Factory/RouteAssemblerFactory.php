@@ -36,13 +36,18 @@ class RouteAssemblerFactory implements FactoryInterface
      */
     protected function parseUri($serviceLocator, $localTunnelConfig)
     {
+        $endpoint = null;
         $request = $serviceLocator->get('Request');
-        $uri = ($request instanceof HttpRequest) ? $request->getUri() : new HttpUri();
 
-        if ($localTunnelConfig->isEnabled()) {
-            $uri = new HttpUri('http://'.$localTunnelConfig->getHost());
+        if ($request instanceof HttpRequest) {
+            $uri = $request->getUri();
+            $endpoint = $uri->getScheme().'://'.$uri->getHost();
         }
 
-        return $uri;
+        if ($localTunnelConfig->isEnabled()) {
+            $endpoint = 'http://'.$localTunnelConfig->getHost();
+        }
+
+        return new HttpUri($endpoint);
     }
 }
